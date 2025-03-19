@@ -79,9 +79,9 @@ bool matrix::invertible() {
 };
 
 bool matrix::upperTriangular() {
-    for (int i = 0; i < this->numRows(); ++i) {
-        for (int j = 0; j < this->numColumns(); ++j) {
-            if (i > j and abs(this->getEntry(i, j)) > 1e-10) {
+    for (int i = 1; i < this->numRows(); ++i) {
+        for (int j = 0; j < i; ++j) {
+            if (abs(this->getEntry(i, j)) > 1e-10) {
                 return false;
             }
         }
@@ -90,9 +90,9 @@ bool matrix::upperTriangular() {
 }
 
 bool matrix::lowerTriangular() {
-    for (int i = 0; i < this->numRows(); ++i) {
-        for (int j = 0; j < this->numColumns(); ++j) {
-            if (i < j and abs(this->getEntry(i, j)) > 1e-10) {
+    for (int i = 0; i < this->numRows() - 1; ++i) {
+        for (int j = i + 1; j < this->numColumns(); ++j) {
+            if (abs(this->getEntry(i, j)) > 1e-10) {
                 return false;
             }
         }
